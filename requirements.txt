@@ -1,0 +1,7 @@
+Django==2.2.4
+psycopg2-binary
+djangorestframework
+markdown
+django-cors-headers
+djangorestframework_simplejwt
+django-filter
