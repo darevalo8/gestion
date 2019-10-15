@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prueba</title>
+</head>
+<body>
+{{perms.users.add_empresauser}}
+    {% if perms.users.add_empresauser %}
+    {{nombre}}
+        <a href="{% url 'dashboard:cliente_add' %}">Crear Cliente</a>
+    {% }
+    <!-- We can mark a BookInstance as returned. -->
+    <!-- Perhaps add code to link to a "book return" view here. -->
+    {% endif %}
+</body>
+</html>

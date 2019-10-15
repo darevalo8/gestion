@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AñadirCliente</title>
+</head>
+<body>
+ <form method="post">
+     {% csrf_token %}
+     {{form_cli.as_p}}
+     {{form_user.as_p}}
+     <button>Crear Cliente</button>
+ </form>
+</body>
+</html>

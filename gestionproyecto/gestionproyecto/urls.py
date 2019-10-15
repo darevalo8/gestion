@@ -46,10 +46,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('users', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
-    path('dashboard', include('dashboard.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('api/login', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/', include('api.urls')),
     path('', include('users.urls')),
 ]
 

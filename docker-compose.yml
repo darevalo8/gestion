@@ -5,9 +5,10 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      POSTGRES_DB: 'gestion'
-      POSTGRES_USER: 'admin'
+      POSTGRES_USER: 'gestion'
       POSTGRES_PASSWORD: 'admin6561700'
+#    ports:
+#      - "5432:5432"
   web:
     build: .
     command: python ./gestionproyecto/manage.py runserver 0.0.0.0:8000
@@ -15,9 +16,9 @@ services:
       - .:/app
     environment:
       DB_NAME: 'gestion'
-      DB_USER: 'admin'
+      DB_USER: 'gestion'
       DB_PASSWORD: 'admin6561700'
-      SECRET_KEY: 'gfa=+h_idil#qr$o)q_qvw%atz!dc*q&4yv^^!j6d!xbtxmv&3'
+      SECRET_KEY: 'gfa=+h_idil#qr)q_qvw%atz!dc*q&4yv^^!j6d!xbtxmv&3'
     ports:
       - "8000:8000"
     depends_on:
