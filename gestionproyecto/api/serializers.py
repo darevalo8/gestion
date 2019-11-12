@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from dashboard.models import Cliente
+from dashboard.models import Cliente, Inversionista
 
 
 class ClienteSerializer(serializers.ModelSerializer):
@@ -8,6 +8,13 @@ class ClienteSerializer(serializers.ModelSerializer):
         model = Cliente
         fields = ('nombre_cliente', 'nit_cliente',
                   'tel_cliente', 'direc_cliente')
+
+
+class InversionistaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Inversionista
+        fields = ('nombre', 'nit',
+                  'telefono', 'direccion', 'tipo_inver')
 
 
 class UserSerializer(serializers.ModelSerializer):

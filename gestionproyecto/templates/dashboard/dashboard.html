@@ -8,7 +8,9 @@
 {{perms.users.add_empresauser}}
     {% if perms.users.add_empresauser %}
     {{nombre}}
-        <a href="{% url 'dashboard:cliente_add' %}">Crear Cliente</a>
+        <a href="{% url 'dashboard:cliente_list' %}">Clientes</a>
+        <a href="{% url 'dashboard:inver_list' %}">Inversionistas</a>
+d
     {% }
     <!-- We can mark a BookInstance as returned. -->
     <!-- Perhaps add code to link to a "book return" view here. -->
