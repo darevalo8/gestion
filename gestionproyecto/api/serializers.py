@@ -6,14 +6,14 @@ from dashboard.models import Cliente, Inversionista
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
-        fields = ('nombre_cliente', 'nit_cliente',
+        fields = ('id', 'nombre_cliente', 'nit_cliente',
                   'tel_cliente', 'direc_cliente')
 
 
 class InversionistaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Inversionista
-        fields = ('nombre', 'nit',
+        fields = ('id', 'nombre', 'nit',
                   'telefono', 'direccion', 'tipo_inver')
 
 
