@@ -5,9 +5,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from dashboard.models import Cliente, Inversionista
 from users.models import ClienteUser, InversionistaUser
+from proyectos.models import Proyecto
 from .serializers import (ClienteSerializer,
                           UserSerializer,
-                          InversionistaSerializer)
+                          InversionistaSerializer, ProyectoSerializer)
 
 
 class ClienteList(APIView):
@@ -125,3 +126,13 @@ class InversionistaList(APIView):
         inversionista = self.get_object(pk)
         inversionista.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ProyectoView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        proeyecto = Proyecto.objects.all()
+        serializer = ProyectoSerializer(proeyecto, many=True)
+        return Response(serializer.data)
+
