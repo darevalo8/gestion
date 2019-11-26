@@ -2,13 +2,15 @@ from django.shortcuts import render, Http404
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
 from rest_framework import status
 from dashboard.models import Cliente, Inversionista
-from users.models import ClienteUser, InversionistaUser
+from users.models import ClienteUser, InversionistaUser, EmpresaUser
 from proyectos.models import Proyecto
 from .serializers import (ClienteSerializer,
                           UserSerializer,
                           InversionistaSerializer, ProyectoSerializer)
+from .helpers import tipo_cliente, tipo_empresa, tipo_inversionista
 
 
 class ClienteList(APIView):
@@ -136,3 +138,22 @@ class ProyectoView(APIView):
         serializer = ProyectoSerializer(proeyecto, many=True)
         return Response(serializer.data)
 
+
+class TipoUsuario(APIView):
+    permission_classes = (IsAuthenticated,)
+    renderer_classes = [JSONRenderer]
+    def get(self, request, format=None):
+        empresa = tipo_empresa(request.user)
+        inversionista = tipo_inversionista(request.user)
+        cliente = tipo_cliente(request.user)
+        print(empresa)
+        tipo_usuario = {}
+        if empresa:
+            tipo_usuario = empresa
+        elif inversionista:
+            tipo_usuario = inversionista
+        elif cliente:
+            tipo_usuario = cliente
+        else:
+            tipo_usuario['mensaje'] = 'No existe'
+        return Response(tipo_usuario)
