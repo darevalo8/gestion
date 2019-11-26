@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'dashboard.apps.DashboardConfig',
     'api.apps.ApiConfig',
-    'proyectos',
+    'proyectos.apps.ProyectosConfig',
 ]
 
 MIDDLEWARE = [

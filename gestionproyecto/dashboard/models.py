@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 
 
 class Empresa(models.Model):
@@ -17,6 +18,9 @@ class Cliente(models.Model):
     tel_cliente = models.CharField(max_length=11)
     direc_cliente = models.CharField(max_length=50)
 
+    def get_absolute_url(self):
+        return reverse('dashboard:cliente_detail', kwargs={'pk': self.pk})
+
     def __str__(self):
         return self.nombre_cliente
 
@@ -32,6 +36,9 @@ class Inversionista(models.Model):
     telefono = models.CharField(max_length=10)
     direccion = models.CharField(max_length=50)
     tipo_inver = models.IntegerField(choices=opciones, default=1)
+
+    def get_absolute_url(self):
+        return reverse('dashboard:inver_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.nombre

@@ -1,15 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <ul>
+{% extends 'base_materialize.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{% include 'nav.html' %}
+<div class="container">
+    <h2 class="center">Clientes</h2>
+
+
+
+      <table>
+        <thead>
+          <tr>
+              <th>Nombre Cliente</th>
+              <th>Acciones</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
         {% for objetos in objects %}
-           <li>{{objetos.nombre_cliente}}</li>
+            <tr>
+                <td>{{objetos.nombre_cliente}}</td>
+                <td>
+                    <a href="{% url 'dashboard:cliente_detail' objetos.id %}">Ver</a> -
+                    <a href="{% url 'dashboard:cliente_update' objetos.id %}">Editar</a> -
+                    <a href="{% url 'dashboard:cliente_delete' objetos.id %}">Eliminar</a>
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
-    <a href="{% url 'dashboard:cliente_add' %}">Crear Cliente</a>
-</body>
-</html>
+        </tbody>
+      </table>
+    <div class="right">
+        <a href="{% url 'dashboard:cliente_add' %}" class="btn-floating btn-large waves-effect waves-light red ">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+
+</div>
+{% endblock content %}

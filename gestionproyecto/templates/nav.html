@@ -1,0 +1,14 @@
+{% load staticfiles %}
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="{% url 'dashboard:inicio' %}" class="brand-logo">Gestion Proyectos</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          {% if perms.users.add_empresauser %}
+            <li><a href="{% url 'dashboard:cliente_list' %}">Clientes</a></li>
+            <li><a href="{% url 'dashboard:inver_list' %}">Inversionistas</a></li>
+            <li><a href="{% url 'proyecto:proyecto_list' %}">Proyectos</a></li>
+          {% endif %}
+      </ul>
+    </div>
+</nav>

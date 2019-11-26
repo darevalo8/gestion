@@ -4,13 +4,11 @@
 {% block content %}
 {% include 'nav.html' %}
 <div class="container">
-    <h2 class="center">Clientes</h2>
+    <h2 class="center">Fases</h2>
     <form method="post">
      {% csrf_token %}
-     {{form_cli.as_p}}
-     {{form_user.as_p}}
-     <button class="waves-effect waves-light btn">Crear Cliente</button>
+     {{form.as_p}}
+     <button class="waves-effect waves-light btn">Crear Fase</button>
     </form>
 </div>
 {% endblock content %}
-

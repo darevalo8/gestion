@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import View, ListView
+from django.views.generic import (View, ListView, DetailView,
+                                  UpdateView, DeleteView)
 from .forms import ClienteForm, UserForm, InversionistaForm
 from .models import Inversionista, Cliente
 from users.models import ClienteUser, InversionistaUser
@@ -61,7 +63,43 @@ class InversionistaList(LoginRequiredMixin, ListView):
     context_object_name = 'objects'
 
 
+class InversionistaDetail(LoginRequiredMixin, DetailView):
+    model = Inversionista
+    template_name = 'dashboard/inver_datail.html'
+    context_object_name = 'objects'
+
+
+class InversionistaUpdate(LoginRequiredMixin, UpdateView):
+    model = Inversionista
+    template_name = 'dashboard/update_form.html'
+    form_class = InversionistaForm
+
+
+class InversionistaDelete(LoginRequiredMixin, DeleteView):
+    model = Inversionista
+    success_url = reverse_lazy('dashboard:inver_list')
+    template_name = 'dashboard/object_confirm_delete.html'
+
+
 class ClienteList(LoginRequiredMixin, ListView):
     model = Cliente
     template_name = 'dashboard/list_cliente.html'
     context_object_name = 'objects'
+
+
+class ClienteDetail(LoginRequiredMixin, DetailView):
+    model = Cliente
+    template_name = 'dashboard/detail_cliente.html'
+    context_object_name = 'objects'
+
+
+class ClienteUpdate(LoginRequiredMixin, UpdateView):
+    model = Cliente
+    template_name = 'dashboard/update_form.html'
+    form_class = ClienteForm
+
+
+class ClienteDelete(LoginRequiredMixin, DeleteView):
+    model = Cliente
+    success_url = reverse_lazy('dashboard:cliente_list')
+    template_name = 'dashboard/object_confirm_delete.html'

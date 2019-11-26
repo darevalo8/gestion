@@ -1,0 +1,39 @@
+{% extends 'base_materialize.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{% include 'nav.html' %}
+<div class="container">
+    <h2 class="center">Proyectos</h2>
+      <table>
+        <thead>
+          <tr>
+              <th>Nombre Proyecto</th>
+              <th>Cliente</th>
+              <th>Acciones</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for objetos in objects %}
+            <tr>
+                <td>{{objetos.nombre_proyecto}}</td>
+                <td>{{objetos.cliente}}</td>
+                <td>
+                    <a href="{% url 'proyecto:detail_proyecto' objetos.id %}">Ver</a> -
+                    <a href="{% url 'proyecto:edit_proyecto' objetos.id %}">Editar</a> -
+                    <a href="{% url 'proyecto:delete_proyecto' objetos.id %}">Eliminar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    <div class="right">
+        <a href="{% url 'proyecto:add_proyecto' %}" class="btn-floating btn-large waves-effect waves-light red ">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+
+</div>
+{% endblock content %}

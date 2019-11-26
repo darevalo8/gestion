@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    {% block description %}{% endblock description %}
+    <title>{% block title %}{% endblock title %}</title>
+    {% block styles %}{% endblock styles %}
+    {% block style_main %}{% endblock style_main %}
+    {% block custom_style %}{% endblock custom_style %}
+</head>
+<body>
+    {% block content %}{% endblock content %}
+    {% block js %}{% endblock js %}
+    {% block custom_js %}{% endblock custom_js %}
+
+</body>
+</html>

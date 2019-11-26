@@ -1,13 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado</title>
-</head>
-<body>
-    {% for objetos in objects %}
-        {{objetos.nombre}}
-    {% endfor %}
-    <a href="{% url 'dashboard:inver_add' %}">Crear Inversionista</a>
-</body>
-</html>
+
+
+
+
+{% extends 'base_materialize.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{% include 'nav.html' %}
+<div class="container">
+    <h2 class="center">Clientes</h2>
+      <table>
+        <thead>
+          <tr>
+              <th>Nombre Inversionista</th>
+              <th>Acciones</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for objetos in objects %}
+            <tr>
+                <td>{{objetos.nombre}}</td>
+                <td>
+                    <a href="{% url 'dashboard:inver_detail' objetos.id %}">Ver</a> -
+                    <a href="{% url 'dashboard:inver_update' objetos.id %}">Editar</a> -
+                    <a href="{% url 'dashboard:inver_delete' objetos.id %}">Eliminar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    <div class="right">
+        <a href="{% url 'dashboard:inver_add' %}" class="btn-floating btn-large waves-effect waves-light red ">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+
+</div>
+
+{% endblock content %}

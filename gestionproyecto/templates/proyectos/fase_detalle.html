@@ -1,0 +1,25 @@
+{% extends 'base_materialize.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{% include 'nav.html' %}
+<div class="container">
+     <div class="row">
+    <div class="">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{objects.nombre_fase}}</span>
+          <p>Fecha inicio: {{objects.fecha_inicio}}</p>
+            <p>Fecha fin: {{objects.fecha_fin}}</p>
+            <p>Descripcion: {{objects.descripcion}}</p>
+        </div>
+        <div class="card-action">
+          <a href="{% url 'proyecto:update_fase' objects.id %}">Editar</a>
+            <a href="{% url 'proyecto:delete_fase' objects.id  %}">Eliminar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,15 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>AñadirInversionista</title>
-</head>
-<body>
- <form method="post">
+{% extends 'base_materialize.html' %}
+{% load staticfiles %}
+
+{% block content %}
+{% include 'nav.html' %}
+<div class="container">
+    <h2 class="center">Crear Inversionistas</h2>
+    <form method="post">
      {% csrf_token %}
-     {{form_inver.as_p}}
-     {{form_user.as_p}}
-     <button>Crear</button>
- </form>
-</body>
-</html>
+        {{form_inver.as_p}}
+        {{form_user.as_p}}
+     <button class="waves-effect waves-light btn">Crear Inversionista</button>
+    </form>
+
+</div>
+
+{% endblock content %}
+

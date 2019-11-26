@@ -1,0 +1,17 @@
+{% extends 'base_materialize.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+    <div class="center">
+        <form method="post">
+     {% csrf_token %}
+     <p>Esta seguro que quiere eliminar a "{{ object }}"?</p>
+     <button class="waves-effect waves-light btn">Aceptar</button>
+        <a href="{% url 'dashboard:inicio' %}" class="waves-effect waves-orange btn">Cancelar</a>
+    </form>
+
+    </div>
+
+</div>
+{% endblock content %}
