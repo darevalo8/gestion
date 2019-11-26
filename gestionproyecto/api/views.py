@@ -9,7 +9,7 @@ from users.models import ClienteUser, InversionistaUser, EmpresaUser
 from proyectos.models import Proyecto
 from .serializers import (ClienteSerializer,
                           UserSerializer,
-                          InversionistaSerializer, ProyectoSerializer)
+                          InversionistaSerializer, ProyectoSerializer, ClienteConsulta)
 from .helpers import tipo_cliente, tipo_empresa, tipo_inversionista
 
 
@@ -157,3 +157,14 @@ class TipoUsuario(APIView):
         else:
             tipo_usuario['mensaje'] = 'No existe'
         return Response(tipo_usuario)
+
+
+class ProyectoClienteView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, format=None):
+        usuario = ClienteUser.objects.get(user=request.user)
+        cliente = Cliente.objects.get(pk=usuario.cliente.pk)
+        serializer = ClienteConsulta(cliente)
+        print(request.user)
+        return Response(serializer.data)

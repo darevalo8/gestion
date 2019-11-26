@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import ClienteList, InversionistaList, ProyectoView, TipoUsuario
+from .views import (ClienteList, InversionistaList,
+                    ProyectoView, TipoUsuario, ProyectoClienteView)
 app_name = 'api'
 urlpatterns = [
     path('clientes', ClienteList.as_view()),
@@ -7,5 +8,6 @@ urlpatterns = [
     path('inversionistas', InversionistaList.as_view()),
     path('inversionistas/<int:pk>/', InversionistaList.as_view()),
     path('proyectos', ProyectoView.as_view()),
+    path('proyectos/clientes', ProyectoClienteView.as_view()),
     path('me', TipoUsuario.as_view()),
 ]

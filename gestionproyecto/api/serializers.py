@@ -39,3 +39,18 @@ class ProyectoSerializer(serializers.ModelSerializer):
         fields = ['nombre_proyecto', 'fecha_inicio', 'fecha_fin',
                   'cliente', 'descripcion', 'estado', 'fases']
 
+
+class ProyectoCliente(serializers.ModelSerializer):
+    fases = FaseSerializer(many=True, read_only=True)
+    class Meta:
+        model = Proyecto
+        fields = ['nombre_proyecto', 'fecha_inicio', 'fecha_fin',
+                  'descripcion', 'estado', 'fases']
+
+
+class ClienteConsulta(serializers.ModelSerializer):
+    clientess = ProyectoCliente(many=True, read_only=True)
+
+    class Meta:
+        model = Cliente
+        fields = ['clientess']

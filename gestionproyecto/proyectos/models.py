@@ -7,7 +7,7 @@ class Proyecto(models.Model):
     nombre_proyecto = models.CharField(max_length=50)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField(null=True)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, related_name='clientess', on_delete=models.CASCADE)
     descripcion = models.TextField(max_length=200)
     estado = models.BooleanField(default=True)
 
